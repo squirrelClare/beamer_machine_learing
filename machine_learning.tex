@@ -979,19 +979,19 @@ timewarningfirst=20,timewarningsecond=30]{tdclock}
       % Requires \usepackage{graphicx}
       \includegraphics[width = 0.9\paperwidth]{figures/svm-svr.jpg}\\
     \end{figure}
-    
+
     \framebreak
-    
+
     \CJKindent CART回归树的损失函数为$$\min \frac{1}{n}\sum_{m=1}^{M}\sum_{x_i \in R_m}(c_m - y_i)^2$$
     其中$R_m$为第$m$个叶节点对应的取值，$c_m$表示第$m$个叶节点的预测值$$c_m = ave(y_i|x_i \in leaf_m)$$
-    
+
     \CJKindent CART选择切分特征量$j$和切分点$s$的公式如下：
     $$\min_{j,s}[\min_{c_1} \sum_{x_i \in R_1\{j,s\}}(y_i-c_1) + \min_{c_2} \sum_{x_i \in R_2\{j,s\}}(y_i-c_2)]$$
 }
 %无监督学习：聚类
 \frame[allowframebreaks]{
     \frametitle{无监督学习：聚类}
-    
+
     \begin{figure}
       \centering
       % Requires \usepackage{graphicx}
@@ -1016,23 +1016,37 @@ timewarningfirst=20,timewarningsecond=30]{tdclock}
       % Requires \usepackage{graphicx}
       \includegraphics[width = 0.5\paperwidth]{figures/noise.png}\\
     \end{figure}
-    
+
     为什么要降维？
     \begin{enumerate}
       \item 维数少可以使算法有更快的计算速度，减少机器内存占用等
       \item 多个特征携带的“信息”有相同或类似的情况（冗余）
       \item 用于数据可视化。
     \end{enumerate}
-    
+
     \framebreak
-    常用的降维算法有
+    常用的降维算法有:
     \begin{enumerate}
-      \item \textcolor[rgb]{0.00,0.00,1.00}{PCA}
+      \item \textcolor[rgb]{0.00,0.00,1.00}{PCA}:最近重构性、最大可分性,
+          \begin{alignat*}{2}
+            \arg\min_{W} \quad & -tr(W^TXX^TW)\\
+            \mbox{s.t.}\quad
+            &W^TW=I
+         \end{alignat*}
       \item \textcolor[rgb]{0.00,0.00,1.00}{SVD}：一个$m \times n$的实数矩阵$A$可分解为$A=U \Sigma V^T$，$U \in R^{m \times m}$，$ \Sigma \in R^{m \times n}$，$V \in R^{n \times n}$
-      \item \textcolor[rgb]{0.00,0.00,1.00}{FFT，DCT，WT}
+      \item \textcolor[rgb]{0.00,0.00,1.00}{FFT，DCT，WT}：主要用于时序数据的分析。
       \item \textcolor[rgb]{0.00,0.00,1.00}{t-SNE}
     \end{enumerate}
-    
+
+
+}
+\frame{
+    \frametitle{强化学习}
+    \begin{figure}
+      \centering
+      % Requires \usepackage{graphicx}
+      \includegraphics[width = 0.8\paperwidth]{figures/rlalgorithm.png}\\
+    \end{figure}
 }
 
 %监督学习
@@ -1046,23 +1060,72 @@ timewarningfirst=20,timewarningsecond=30]{tdclock}
       \includegraphics[width=0.65\paperwidth]{figures/application.jpg}\\
     \end{figure}
 }
-\subsection{\sihao 自然语言处理}
-
-\subsection{\sihao 语音识别}
-
-\subsection{\sihao 机器视觉}
-
-\subsection{\sihao 推荐系统}
-
-\section{\erhao 总结与展望}
-
+%\subsection{\sihao 自然语言处理}
 \frame{
-  Description item:
-  \begin{description}%[<+-| alert@+>]
-  \item[description] Item starts with description.
-  \item[Fermion] This is item 2.
-  \end{description}
+    \frametitle{NLP技术应用}
+	\begin{figure}
+		\setlength{\abovecaptionskip}{0.cm}
+		\setlength{\belowcaptionskip}{0.cm}
+		\centering
+        \subfigure[垃圾邮件过滤]{\includegraphics[width = 0.4\paperwidth]{figures/email.jpg}}
+		\subfigure[输入法]{\includegraphics[width = 0.4\paperwidth]{figures/input.jpg}}\\
+		\subfigure[机器翻译]{\includegraphics[width = 0.4\paperwidth]{figures/google_tran.jpg}}
+		\subfigure[理解未知语言]{\includegraphics[width = 0.4\paperwidth]{figures/arrival.jpg}}
+		%\caption{a)Geoffrey Hinton；b)Yoshua Bengio；c)Yann LeCun}
+	\end{figure}
 }
+%\subsection{\sihao 语音识别}
+\frame{
+    \frametitle{语音识别技术应用}
+	\begin{figure}
+		\setlength{\abovecaptionskip}{0.cm}
+		\setlength{\belowcaptionskip}{0.cm}
+		\centering
+        \subfigure[智能客服]{\includegraphics[width = 0.3\paperwidth]{figures/kefu.jpg}}
+		\subfigure[语音输入法]{\includegraphics[width = 0.3\paperwidth]{figures/yuyinshuru.jpg}}\\
+		\subfigure[智能音箱]{\includegraphics[width = 0.25\paperwidth]{figures/yinxiang.jpg}}
+		\subfigure[听书]{\includegraphics[width = 0.25\paperwidth]{figures/tingshu.jpg}}
+		%\caption{a)Geoffrey Hinton；b)Yoshua Bengio；c)Yann LeCun}
+	\end{figure}
+}
+%\subsection{\sihao 机器视觉}
+\frame{
+    \frametitle{机器视觉应用}
+	\begin{figure}
+		\setlength{\abovecaptionskip}{0.cm}
+		\setlength{\belowcaptionskip}{0.cm}
+		\centering
+        \subfigure[人脸识别]{\includegraphics[width = 0.3\paperwidth]{figures/face.png}}
+		\subfigure[OCR]{\includegraphics[width = 0.3\paperwidth]{figures/OCR.jpg}}
+		\subfigure[车牌识别]{\includegraphics[width = 0.25\paperwidth]{figures/cheliang.jpg}}\\
+		\subfigure[步态识别]{\includegraphics[width = 0.25\paperwidth]{figures/butai.jpg}}
+        \subfigure[红外温测]{\includegraphics[width = 0.25\paperwidth]{figures/hongwai.jpg}}
+		%\caption{a)Geoffrey Hinton；b)Yoshua Bengio；c)Yann LeCun}
+	\end{figure}
+}
+%\subsection{\sihao 推荐系统}
+\frame{
+    \frametitle{推荐系统应用}
+	\begin{figure}
+		\setlength{\abovecaptionskip}{0.cm}
+		\setlength{\belowcaptionskip}{0.cm}
+		\centering
+        \subfigure[搜索引擎]{\includegraphics[width = 0.3\paperwidth]{figures/search.jpg}}
+		\subfigure[电商]{\includegraphics[width = 0.3\paperwidth]{figures/amzon.jpg}}\\
+		\subfigure[新闻推送]{\includegraphics[width = 0.25\paperwidth]{figures/toutiao.jpg}}
+		\subfigure[音乐推送]{\includegraphics[width = 0.25\paperwidth]{figures/wangyi.jpg}}
+		%\caption{a)Geoffrey Hinton；b)Yoshua Bengio；c)Yann LeCun}
+	\end{figure}
+}
+%\section{\erhao 总结与展望}
+%
+%\frame{
+%  Description item:
+%  \begin{description}%[<+-| alert@+>]
+%  \item[description] Item starts with description.
+%  \item[Fermion] This is item 2.
+%  \end{description}
+%}
 
 \subsection*{Thanks}
 
@@ -1072,13 +1135,12 @@ timewarningfirst=20,timewarningsecond=30]{tdclock}
 %  \column{13cm}
 %  \column{14cm}
 \begin{center}
-    \textcolor[rgb]{1.00,0,0.00}{\yihao Thank you!}
+    \textcolor[rgb]{0.98,0.62,0.21}{\tehao 谢谢聆听!}
 \end{center}
 
 %  \column{13cm}
 %  \end{columns}
 }
-
 \end{CJK}
 \end{document}
 
