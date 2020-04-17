@@ -1,0 +1,1097 @@
+\documentclass[CJK,notheorems,compress,mathserif,table]{beamer}
+\usepackage{xcolor}%定义了一些颜色
+\usepackage{colortbl,booktabs}%第二个包定义了几个*rule
+\usepackage{setspace}
+\usepackage{bm}
+\usepackage{indentfirst}
+%\captionsetup[subfigure]{labelformat=simple, listofformat=subsimple, farskip = 0pt}
+\usetheme{Madrid}
+\usecolortheme{seagull}
+%\AtBeginSection[]
+%{
+%    \begin{frame}
+%        \tableofcontents[currentsection,hideallsubsections]
+%    \end{frame}
+%}
+%\AtBeginSubsection[]
+%{
+%    \begin{frame}[shrink]
+%        \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide]
+%    \end{frame}
+%}
+\setbeamertemplate{caption}[numbered]
+\definecolor{col1}{RGB}{249,157,53}
+%\setbeamercolor{bgcolor}{fg=black,bg=blue!20}
+%\setbeamercolor{bgcolor}{fg=black,bg=col1!20}
+%\definecolor{col1}{RGB}{249,157,53}
+%\setbeamercolor{bgcolor}{fg=black,bg=col1}
+\defbeamertemplate*{footline}{myfootline}
+{%
+    \leavevmode%
+    \begin{beamercolorbox}[rounded=true, shadow=true,wd=1\paperwidth,ht=2.5ex,dp=1.125ex,center]{bgcolor}
+    \textcolor[rgb]{1.00,1,1.00}{\insertshorttitle{}}\hspace*{2em}\textcolor[rgb]{1.00,1,1.00}{\insertshortdate{}}\hspace*{2em}
+    \textcolor[rgb]{1.00,1,1.00}{\insertframenumber{}} / \textcolor[rgb]{1.00,1,1.00}{\inserttotalframenumber}\hspace*{2ex}
+    \end{beamercolorbox}%
+
+  \vskip0pt%
+}
+
+\setbeamertemplate{footline}[frame number]
+%\setbeamertemplate{background}{\includegraphics[height=\paperheight]{figures/background.jpg}}
+%算法设置
+\usepackage{amsmath,amssymb,bm}
+\usepackage{color,xcolor,tikz}
+\usepackage{graphicx}
+\usepackage{algorithm,algorithmic}
+%\usepackage{float}
+\usepackage{amsthm}
+%%------------------------常用宏包---------------------------------------------------------------------
+\usepackage{amsmath,amssymb}
+%\usepackage{times}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{*}{mps}{*}{}
+\usepackage{subfigure}
+\usepackage{color}% [usenames]
+\usepackage{hyperref}
+\hypersetup{pdfborder={0 0 0}, colorlinks=false}
+\graphicspath {{figure/}}
+\usepackage{xmpmulti}
+\usepackage{colortbl,dcolumn}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{CJK}
+\graphicspath{{./figures/}}
+\renewcommand{\raggedright}{\leftskip=0pt \rightskip=0pt plus 0cm}
+\raggedright
+
+\def\hilite<#1>{%
+\temporal<#1>{\color{col1!20}}{\color{col1}}%
+{\color{blue!75}}}
+
+\renewcommand{\theequation}{\sffamily\bfseries\arabic{equation}}
+
+\newcolumntype{H}{>{\columncolor{col1!20}}c!{\vrule}}
+\newcolumntype{H}{>{\columncolor{col1!20}}c}
+
+%============================== 参考文献=========================================
+%自定义命令\upcite, 使参考文献引用以上标出现
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
+
+\bibliographystyle{plain}
+%%%%%%%%%%%%%%%%%%%%%%%%%%% 重定义字体、字号命令 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\songti}{\CJKfamily{song}}        % 宋体
+\newcommand{\fangsong}{\CJKfamily{fs}}        % 仿宋体
+\newcommand{\kaishu}{\CJKfamily{kai}}         % 楷体
+\newcommand{\heiti}{\CJKfamily{hei}}          % 黑体
+\newcommand{\lishu}{\CJKfamily{li}}           % 隶书
+\newcommand{\youyuan}{\CJKfamily{you}}       % 幼圆
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}  % 字号设置
+\newcommand{\erhao}{\fontsize{18pt}{\baselineskip}\selectfont}  % 字号设置
+\newcommand{\yihao}{\fontsize{24pt}{\baselineskip}\selectfont}  % 字号设置
+\newcommand{\tehao}{\fontsize{36pt}{\baselineskip}\selectfont}  % 字号设置
+\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}  % 字号设置
+\newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont}    % 字号设置
+\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}   % 字号设置
+\newcommand{\liuhao}{\fontsize{6pt}{\baselineskip}\selectfont}  % 字号设置
+\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}    % 字号设置
+\font\tenrsfs=rsfs10 \font
+\twelversfs=rsfs10 scaled\magstep1
+
+\newcommand{\ideq}{{\lower .5ex
+  \hbox{$\>\>\stackrel{\rm def}{=}\>\>$} }}  %  means "by definition"
+\newcommand{\eqid}{{\lower .5ex
+  \hbox{$\>\>\stackrel{\rm def}{=}\>\>$} }}  %  means "by definition"
+\newcommand{\definition}{{\lower .5ex
+  \hbox{$\>\>\stackrel{\rm def}{=}\>\>$} }}  %  means "by definition"
+
+\def\ba{\begin{array}}
+\def\ea{\end{array}}
+\def\be{\begin{enumerate}}
+\def\ee{\end{enumerate}}
+\def\bi{\begin{itemize}}
+\def\ei{\end{itemize}}
+\def\bc{\begin{cases}}
+\def\ec{\end{cases}}
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+\def\beqs{\begin{equation*}}
+\def\eeqs{\end{equation*}}
+\def\beqa{\begin{eqnarray}}
+\def\eeqa{\end{eqnarray}}
+\def\beqas{\begin{eqnarray*}}
+\def\eeqas{\end{eqnarray*}}
+\def\bmul{\begin{multline}}
+\def\emul{\end{multline}}
+\def\bmuls{\begin{multline*}}
+\def\emuls{\end{multline*}}
+\def\bg{\begin{gather}}
+\def\eg{\end{gather}}
+\def\bgs{\begin{gather*}}
+\def\egs{\end{gather*}}
+
+\newcommand{\re}{\mbox{\rm Re}}
+\newcommand{\im}{\mbox{\rm Im}}
+\newcommand\SR{\small \mathbf{R}}
+\newcommand{\C}{{\mathbf{C}}}
+\newcommand{\R}{{\mathbf{R}}}
+\newcommand{\T}{{\mathbf{T}}}
+\newcommand{\Z}{{\mathbf{Z}}}
+
+\def\H{{\cal H}}
+\def\F{{\cal F}}
+\usepackage[font=Times,timeinterval=1,timeduration=2,colorwarningfirst=yellow,colorwarningsecond=red,
+timewarningfirst=20,timewarningsecond=30]{tdclock}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\newenvironment{breakablealgorithm}
+  {% \begin{breakablealgorithm}
+   \begin{center}
+     \refstepcounter{algorithm}% New algorithm
+     \hrule height.8pt depth0pt \kern2pt% \@fs@pre for \@fs@ruled
+     \renewcommand{\caption}[2][\relax]{% Make a new \caption
+       {\raggedright\textbf{\ALG@name~\thealgorithm} ##2\par}%
+       \ifx\relax##1\relax % #1 is \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
+       \else % #1 is not \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
+       \fi
+       \kern2pt\hrule\kern2pt
+     }
+  }{% \end{breakablealgorithm}
+     \kern2pt\hrule\relax% \@fs@post for \@fs@ruled
+   \end{center}
+  }
+\makeatother
+
+\begin{document}
+
+\begin{CJK}{GBK}{kai}
+
+\baselineskip=20pt
+
+\sffamily\bfseries \boldmath \mathversion{bold}
+
+\xiaowuhao
+
+%%----------------------- Theorems ---------------------------------------
+%\theoremstyle{plain} %\theoremheaderfont{\bf}
+%\theorembodyfont{\sc\} \theoremindent0em
+%\theoremseparator{\hspace{1em}} \theoremnumbering{arabic}
+%\theoremsymbol{} %定理结束时自动添加的标志
+\newtheorem{Theorem}{\bf 定理}
+\newtheorem{Definition}{\bf 定义}[section]
+\setbeamertemplate{Definition}[numbered]
+\newtheorem{Lemma}{\bf 引理}
+\newtheorem{Corollary}{\bf 推论}
+\newtheorem{Proposition}{\bf 命题}
+\newtheorem{Example}{\bf 例}
+\newtheorem{Remark}{\bf 注}
+\newtheorem{Property}{\bf 性质}[section]
+\setbeamertemplate{Property}[numbered]
+\newtheorem{Conjecture}{\bf 猜想}
+
+
+\renewcommand\figurename{\rm 图}
+\renewcommand\tablename{\bf 表}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  % Use Input in the format of Algorithm
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm
+%设置脚注页码
+
+%\renewcommand{\thefigure}{\arabic{figure}}
+
+%\setbeamertemplate{background canvas}[vertical shading][bottom=white,top=structure.fg!25]
+
+%% Page 1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\bigskip
+%
+% \vskip 0.1in
+%
+%\noindent\textcolor[rgb]{0.00,0.39,0.00}{\wuhao 华南理工大学硕士学位论文答辩}
+%\vskip -0.3in
+
+\title{机器学习算法概述及其应用场景}
+
+\author[\textcolor{white}{ }]
+     {\textcolor[rgb]{0.00,0.25,0.50}{张聪聪 \quad\quad}\\[1ex]}
+\institute{\textcolor[rgb]{0.00,0.25,0.50}
+              {\bf 华润智慧能源有限公司}}
+\date[\initclock \cronominutes\timeseparator\cronoseconds]{\textcolor[rgb]{0.00,0.25,0.50}{\today}}
+\logo{\includegraphics[height=0.04\textwidth]{crp-logo.pdf}}
+
+\frame{\titlepage}
+
+\frame{
+\frametitle{\erhao 目录}
+ \tableofcontents[currentsection, hideallsubsections]
+}
+
+\AtBeginSection[] {
+\frame{\sectionpage}
+\addtocounter{framenumber}{-1}
+}
+\AtBeginSubsection[] {
+\frame<handout:0> {
+\frametitle{\secname~}
+\tableofcontents[currentsection,currentsubsection]
+}
+\addtocounter{framenumber}{-1}
+}
+\section{\erhao 大数据与人工智能}
+%\begin{frame}
+%\sectionpage
+%\end{frame}
+\frame{
+    \frametitle{大物移云智}
+    \begin{figure}
+      \centering
+      % Requires \usepackage{graphicx}
+      \includegraphics[width=0.9\paperwidth]{b_lot.jpg}
+      %\includegraphics[height=0.09\textwidth]{}
+    \end{figure}
+}
+\subsection{\sihao 大数据}
+\frame{
+    \frametitle{什么是大数据}
+	\begin{Definition}[广义]
+		\begin{itemize}
+			\item 大数据是收集，组织，处理和收集大型数据集洞察所需的非传统策略和技术的总称。
+			\item 大数据就是多，就是多。原来的设备存不下、算不动.
+			\item 大数据，不是随机样本，而是所有数据；不是精确性，而是混杂性；不是因果关系，而是相关关系.
+			\item 大数据，是指物理世界到数字世界的映射和提炼。通过发现其中的数据特征，从而做出提升效率的决策行为。
+		\end{itemize}
+	\end{Definition}
+	\begin{Definition}[狭义]
+		大数据，是通过获取、存储、分析，从大容量数据中挖掘价值的一种全新的技术架构。
+	\end{Definition}
+}
+\frame{
+	\frametitle{大数据特点}
+	\begin{columns}[c] % align columns
+		\begin{column}<1->{.58\textwidth}
+			\begin{itemize}
+				\item<1-> {\color{blue}\textbf{Volume}}：数据量大，包括采集、存储和计算的量都非常大。
+				\item<1-> {\color{blue}\textbf{Variety}}：种类和来源多样化。结构化、半结构化和非结构化数据;网络日志、音频、视频、图片、地理位置信息等等。
+				\item<1-> {\color{blue}\textbf{Value}}：数据价值密度相对较低，或者说是浪里淘沙却又弥足珍贵。
+				\item<1-> {\color{blue}\textbf{Velocity}}：数据增长速度快，处理速度也快，时效性要求高。
+				\item<1-> {\color{blue}\textbf{Velocity}}：数据的准确性和可信赖度，即数据的质量。
+			\end{itemize}		
+		\end{column}%
+        \hfill%
+		\begin{column}<0->{.4\textwidth}
+			\begin{figure}[thpb]
+				\centering
+				\resizebox{1\linewidth}{!}{
+					\includegraphics{figures/5v.png}
+				}
+				%\includegraphics[scale=1.0]{figurefile}
+				%\caption{5v特点}
+				\label{fig:campus}
+			\end{figure}
+		\end{column}%
+		
+
+	\end{columns}
+}
+%大数据价值与应用场景
+\frame{
+	\frametitle{大数据的价值与应用场景}
+	\begin{columns}[c]
+		\begin{column}{.55\textwidth}
+			\begin{figure}[thpb]
+				\centering
+				\resizebox{1\linewidth}{!}{
+					\includegraphics{figures/value.jpg}
+				}
+				%\includegraphics[scale=1.0]{figurefile}
+				%\caption{5v特点}
+				\label{fig:campus}
+			\end{figure}
+		\end{column}
+		\hfill
+		\begin{column}{.40\textwidth}
+		\begin{block}{四类价值方法}
+			\begin{itemize}
+				\item 客户群体细分，然后为每个群体量定制特别的服务。
+				\item 模拟现实环境，发掘新的需求同时提高投资的回报率。
+				\item 加强部门联系，提高整条管理链条和产业链条的效率。
+				\item 降低服务成本，发现隐藏线索进行产品和服务的创新。
+			\end{itemize}
+		\end{block}
+		\end{column}
+	\end{columns}
+}
+\frame{
+	\frametitle{数据怎么来}
+	\begin{columns}[c]
+		\raggedright
+		\begin{column}<1->{.55\textwidth}
+			\begin{figure}[thpb]
+				\centering
+				\resizebox{1\linewidth}{!}{
+					\includegraphics{figures/7step.jpg}
+				}
+				%\includegraphics[scale=1.0]{figurefile}
+				%\caption{5v特点}
+				\label{fig:campus}
+			\end{figure}
+		\end{column}
+		\hfill
+		\begin{column}<1->{.4\textwidth}
+			\begin{block}<1->{大数据的六个环节}
+			\begin{itemize}
+				\item<1-> 数据提取
+				\item<1-> 数据存储
+				\item<1-> 数据清理
+				\item<1-> 数据挖掘
+				\item<1-> 数据分析
+				\item<1-> 数据可视化
+			\end{itemize}
+		\end{block}
+		\end{column}
+	\end{columns}
+}
+\subsection{\sihao 人工智能}
+\frame{
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.9\textwidth]{figures/ai.jpg}
+	\end{figure}
+}
+%人工智能定义
+\frame{
+	\frametitle{人工智能是什么}
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.4\textwidth]{figures/whatisai.jpg}
+	\end{figure}
+	\begin{Definition}{人工智能（Artificial Intelligence）}
+		它是研究、开发用于模拟、延伸和扩展人的智能的理论、方法、技术及应用系统的一门新的技术科学
+	\end{Definition}
+}
+%人工智能的三个级别
+\frame[allowframebreaks]{
+	\frametitle{人工智能的三个级别}
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.25]{figures/xiaomi.jpg}
+	\end{figure}
+	\begin{block}<1->{\textbf{弱人工智能}}
+		也称限制领域人工智能（Narrow AI） 或应用型人工智能（Applied AI） ， 指的是专注于且只能解决特定领域问题的人工智能。
+	\end{block}
+	\framebreak
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.25]{figures/zhongjie.jpg}
+	\end{figure}
+	\begin{block}<1->{\textbf{强人工智能}}
+		又称通用人工智能或完全人工智能， 指的是可以胜任人类所有工作的人工智能。
+	\end{block}
+	\framebreak
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=0.25]{figures/tianwang.jpg}
+	\end{figure}
+	\begin{block}<1->{\textbf{超人工智能}}
+		假设计算机程序通过不断发展， 可以比世界上最聪明、 最有天赋的人类还聪明， 那么由此产生的人工智能系统就可以被称为超人工智能
+	\end{block}
+}
+%人工智能发展史
+\frame[allowframebreaks]{
+	\frametitle{人工智能发展史}
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.8\textwidth]{figures/ailicheng.png}
+	\end{figure}
+	\begin{block}{大数据的六个环节}
+    			\begin{itemize}
+                    \setlength{\itemsep}{0pt}
+                    \setlength{\parsep}{0pt}
+                    \setlength{\parskip}{0pt}
+        			\item 起步发展期：1956年—20世纪60年代初。
+        			\item 反思发展期：20 世纪60年代—70年代初
+        			\item 应用发展期：20 世纪70年代初—80年代中
+        			\item 低迷发展期：20 世纪80年代中—90年代中
+        			\item 稳步发展期：20 世纪90年代中—2010年
+        			\item 蓬勃发展期：2011年至今。
+    			\end{itemize}
+	\end{block}
+	\framebreak
+	\begin{figure}
+		\centering
+		% Requires \usepackage{graphicx}
+		\includegraphics[width=0.8\paperwidth]{figures/licheng2.jpg}
+		%\includegraphics[height=0.09\textwidth]{}
+	  \end{figure}
+}
+
+\frame[allowframebreaks]{
+	\frametitle{深度学习三巨头}
+	% \begin{figure}
+	% 	\centering
+	% 	% Requires \usepackage{graphicx}
+	% 	\includegraphics[width=0.3\paperwidth]{figures/hitton.jpeg}
+	% 	%\includegraphics[height=0.09\textwidth]{}
+	%   \end{figure}
+	
+	\begin{figure}
+		\setlength{\abovecaptionskip}{0.cm}
+		\setlength{\belowcaptionskip}{0.cm}
+		\centering
+		\subfigure[]{\includegraphics[width = 0.3\paperwidth]{figures/hitton.jpeg}}
+		\subfigure[]{\includegraphics[width = 0.3\paperwidth]{figures/Yoshua_Bengio.jpeg}}
+		\subfigure[]{\includegraphics[width = 0.3\paperwidth]{figures/lecun.jpeg}}
+		\caption{a)Geoffrey Hinton；b)Yoshua Bengio；c)Yann LeCun}
+	\end{figure}
+	\framebreak
+	\begin{block}<1->{Geoffrey Hinton}
+		\begin{enumerate}
+			\item<1-> {\color{blue}\textbf{反向传播}}:证明了反向传播算法允许神经网络发现自己的数据内部表示，这使得使用神经网络成为可能网络解决以前被认为超出其范围的问题。
+			\item<1-> {\color{blue}\textbf{玻尔兹曼机}}：这是第一个能够学习不属于输入或输出的神经元内部表示的神经网络之一。
+			\item<1-> {\color{blue}\textbf{卷积神经网络的改进}}：2012 年，Hinton 和他的学生 Alex Krizhevsky 以及 Ilya Sutskever 通过 Rectified Linear Neurons 和 Dropout Regularization 改进了卷积神经网络，并在著名的 ImageNet 评测中将对象识别的错误率减半，在计算机视觉领域掀起一场革命。
+		\end{enumerate}
+	\end{block}
+	\framebreak
+	\begin{block}<1->{Yoshua Bengio}
+		\begin{enumerate}
+			\item<1-> {\color{blue}\textbf{序列概率模型}}:现代深度学习语音识别系统正在扩展这些概念。
+			\item<1-> {\color{blue}\textbf{高维词嵌入和注意力模型}}:导致了机器翻译领域的突破，并构成了深度学习序列建模的关键组成部分;
+			\item<1->  {\color{blue}\textbf{生成对抗网络}}:生成对抗网络(GANs)，在计算机视觉和计算机图形学领域引发了一场革命。
+		\end{enumerate}
+	\end{block}
+	\framebreak
+	\begin{block}<1->{Yann LeCun}
+		\begin{enumerate}
+			\item<1-> {\color{blue}\textbf{卷积神经网络}}: 提出卷积神经网络(CNN), 卷积神经网络已经成为计算机视觉、语音识别、语音合成、图像合成和自然语言处理领域的行业标准.
+			\item<1->  {\color{blue}\textbf{改进反向传播算法}}:加速了反向传播算法;
+			\item<1->  {\color{blue}\textbf{拓宽神经网络}}:他将神经网络发展为一种计算模型，用到一系列任务中，他早期工作中的一些概念已成为 AI 发展的基石。
+		\end{enumerate}
+	\end{block}
+}
+%人工智能特点
+%人工智能应用
+\frame{
+	\frametitle{AI、机器学习、深度学习之间的关系}
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.5\paperwidth]{figures/guanxi.jpeg}
+	\end{figure}
+}
+\section{\erhao 机器学习算法概述}
+\subsection{\sihao 算法}
+%算法定义：三要素
+\frame{
+	\frametitle{什么是算法}
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=0.3\paperwidth]{figures/algbook.jpg}
+	\end{figure}
+
+		\begin{block}<1->{算法}
+				算法是任何良定义的{\color{blue}\textbf{计算过程}}，该过程取某个值或值的集合作为{\color{blue}\textbf{输入}}并产生某个值或值的集合作为{\color{blue}\textbf{输出}}。
+		\end{block}
+}
+%算法特性
+\frame{
+    \frametitle{算法特性}
+    \begin{Property}[有限性]
+        算法在执行有限步之后必须终止。
+    \end{Property}
+    \begin{Property}[确定性]
+        算法的每一个步骤，都有精确的定义。要执行的每一个动作都是清洗的、无歧义的。
+    \end{Property}
+    \begin{Property}[输入]
+        一个算法有0个或多个输入，它是由外部提供的，作为算法开始执行前的初始值。
+    \end{Property}
+    \begin{Property}[输出]
+        一个算法有1个或多个输出，输出是输入的某种函数。
+    \end{Property}
+    \begin{Property}[可行性]
+        算法中有待实现的运算，都是基本运算。
+    \end{Property}
+}
+%算法设计原则
+\frame{
+    \frametitle{算法设计原则}
+    \begin{enumerate}
+        \item \textcolor[rgb]{0.00,0.00,1.00}{正确性}：算法能够正确地执行预定的功能和性能要求；
+        \item \textcolor[rgb]{0.00,0.00,1.00}{可读性}：利于让人理解，逻辑清晰、简单、结构化；
+        \item \textcolor[rgb]{0.00,0.00,1.00}{健壮性}：算法要有较高的容错性；
+        \item \textcolor[rgb]{0.00,0.00,1.00}{高效率与低存储量需求}：要求算法应有高效率和低存储量的需求。
+    \end{enumerate}
+}
+%时间复杂度空间复杂度
+\frame[allowframebreaks]{
+    \frametitle{算法时间复杂度与空间复杂度}
+    \begin{block}{时间复杂度}
+    在计算机科学中，算法的时间复杂度（Time complexity）是一个函数，它定性描述该算法的运行时间。时间复杂度常用大O 符号表述，时间复杂度可公式表示为$T(n) = O(f(n))$
+    \end{block}
+    \begin{block}{空间复杂度}
+    空间复杂度(Space Complexity)是对一个算法在运行过程中临时占用存储空间大小的量度，算法的空间复杂度可公式化表示为$S(n) = O(f(n))$
+    \end{block}
+    \framebreak
+	\begin{table}[htbp]
+	  \centering
+	  \caption{常用排序算法时间复杂度和空间复杂度}
+		\begin{tabular}{c|c|c|c|c|c}
+		\hline
+		排序算法  & \multicolumn{1}{p{4.44em}|}{平均时间\newline{}复杂度} & \multicolumn{1}{p{4.44em}|}{最坏时间\newline{}复杂度} & \multicolumn{1}{p{4.44em}|}{最好时间\newline{}复杂度} & 空间复杂度 & 稳定性 \\
+		\hline
+		冒泡排序  & $O(n^2)$ & $O(n^2)$ & O(n)  & O(1)  & 稳定 \\
+		\hline
+		直接选择排序 & O(n) & $O(n^2)$ & O(n)  & O(1)  & 不稳定 \\
+		\hline
+		直接插入排序 & $O(n^2)$ & $O(n^2)$ & O(n)  & O(1)  & 稳定 \\
+		\hline
+		快速排序  & O(nlogn) & $O(n^2)$ & O(nlogn) & O(nlogn) & 不稳定 \\
+		\hline
+		堆排序   & O(nlogn) & O(nlogn) & O(nlogn) & O(1)  & 不稳定 \\
+		\hline
+		\end{tabular}%
+	  \label{tab:addlabel}%
+	\end{table}%
+}
+%算法表述形式：伪代码
+\frame[allowframebreaks]{
+	\frametitle{算法表述——伪代码}
+  \begin{algorithm}[H]
+    \caption{ Framework of ensemble learning for our system.}
+    \label{alg:Framwork}
+    \begin{algorithmic}[1]
+      \REQUIRE
+        The set of positive samples for current batch, $P_n$;
+        The set of unlabelled samples for current batch, $U_n$;
+       Ensemble of classifiers on former batches, $E_{n-1}$;
+     \ENSURE
+       Ensemble of classifiers on the current batch, $E_n$;
+     \STATE Extracting the set of reliable negative and/or positive samples $T_n$ from $U_n$ with help of $P_n$;
+     \label{code:fram:extract}
+     \STATE Training ensemble of classifiers $E$ on $T_n \cup P_n$, with help of data in former batches;
+     \label{code:fram:trainbase}
+     \STATE $E_n=E_{n-1}cup E$;
+   \label{code:fram:add}
+     \STATE Classifying samples in $U_n-T_n$ by $E_n$;
+     \label{code:fram:classify}
+     \STATE Deleting some weak classifiers in $E_n$ so as to keep the capacity of $E_n$;
+     \label{code:fram:select} \\
+     \RETURN $E_n$;
+   \end{algorithmic}
+ \end{algorithm}
+
+\begin{algorithm}[H]
+    \algsetup{linenosize=\tiny}
+    \scriptsize
+  \caption{An example for format For \& While Loop in Algorithm}
+  \begin{algorithmic}[1]
+    \FOR{each $i\in [1,9]$}
+      \STATE initialize a tree $T_{i}$ with only a leaf (the root);
+      \STATE $T=T\cup T_{i};$
+    \ENDFOR
+    \FORALL {$c$ such that $c\in RecentMBatch(E_{n-1})$}
+      \label{code:TrainBase:getc}
+      \STATE $T=T\cup PosSample(c)$;
+      \label{code:TrainBase:pos}
+    \ENDFOR;
+    \FOR{$i=1$; $i<n$; $i++$ }
+      \STATE $//$ Your source here;
+    \ENDFOR
+    \FOR{$i=1$ to $n$}
+      \STATE $//$ Your source here;
+    \ENDFOR
+    \STATE $//$ Reusing recent base classifiers.
+    \label{code:recentStart}
+    \WHILE {$(|E_n| \leq L_1 )and( D \neq \phi)$}
+      \STATE Selecting the most recent classifier $c_i$ from $D$;
+      \STATE $D=D-c_i$;
+      \STATE $E_n=E_n+c_i$;
+    \ENDWHILE
+    \label{code:recentEnd}
+  \end{algorithmic}
+\end{algorithm}
+}
+%算法表述形式：流程图
+\frame{
+    \frametitle{算法表述——流程图}
+\begin{figure}
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.8\textwidth]{figures/algliucheng.jpg}\\
+  \caption{算法流程图}
+\end{figure}
+}
+%算法表述形式：N-S图
+\frame{
+    \frametitle{算法表述：N-S图}
+\begin{figure}
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=0.65\textwidth]{figures/ns.png}\\
+  \caption{算法N-S图}
+\end{figure}
+}
+%数据结构
+\frame{
+    \frametitle{数据结构}
+    \begin{Definition}[数据结构]
+        \CJKindent 数据结构是计算机\textcolor[rgb]{1.00,0.00,0.00}{存储、组织数据的方式}。数据结构是指相互之间存在一种或多种特定关系的数据元素的集合。
+    \end{Definition}
+\CJKindent   程序的性能瓶颈往往都跟算法和数据结构有关系，简单的说，可以让你程序跑的更快
+}
+%基本数据结构：集合结构
+\frame{
+    \frametitle{基本数据逻辑结构——集合结构}
+    \begin{Definition}[集合结构]
+        集合结构的里面的元素关系是孤立的
+    \end{Definition}
+    若x是集合A的元素，则记作$x \in A$。集合中的元素有三个特征：
+\begin{enumerate}
+  \item 确定性:集合中的元素必须是确定的;
+  \item 互异性:集合中的元素互不相同$\forall a \in A,b \notin A, \exists a \neq b$;
+  \item 无序性:集合中的元素没有先后之分。
+\end{enumerate}
+}
+%基本数据结构：线性结构
+\frame{
+    \frametitle{基本数据逻辑结构——线性结构}
+    \begin{Definition}[线性结构]
+        线性结构里面的元素关系：一对一
+    \end{Definition}
+    常用的线性结构有：
+    \begin{enumerate}
+      \item \textcolor[rgb]{0.00,0.00,1.00}{线性表}：一个线性表是n个具有相同特性的数据元素的有限序列，线性表主要由顺序表示或链式表示；
+      \item \textcolor[rgb]{0.00,0.00,1.00}{栈}：它是一种运算受限的线性表，限定仅在表尾进行插入和删除操作的线性表；
+      \item \textcolor[rgb]{0.00,0.00,1.00}{队列}：先进先出；
+      \item \textcolor[rgb]{0.00,0.00,1.00}{双队列}：可以在队列任意一端入队和出队；
+      \item \textcolor[rgb]{0.00,0.00,1.00}{数组}：用于储存多个相同类型数据的集合；
+      \item \textcolor[rgb]{0.00,0.00,1.00}{串}
+    \end{enumerate}
+}
+%基本数据结构：树形结构
+\frame{
+    \frametitle{基本数据逻辑结构——树形结构}
+
+    	\begin{columns}[c]
+		\raggedright
+		\begin{column}<1->{.55\textwidth}
+    \begin{Definition}[树形结构]
+        树是包含n$(n\geq 0)$个节点的有穷集合，内部元素是一对多的关系，其中：
+        \begin{enumerate}
+          \item 每个元素成为节点（Node）;
+          \item 有一个被称为根节点的特定节点（Root）;
+          \item 除根节点外其余元素被分为m$(m \geq 0)$个互不相交的集合$\{T_i,i \in \{0, 1, \dots, m\}\}$，每个子集$T_i$被成为原树的子树。
+        \end{enumerate}
+    \end{Definition}
+    		\hfill
+		\end{column}
+		\begin{column}<1->{.4\textwidth}
+			\begin{figure}[thpb]
+				\centering
+				\resizebox{1\linewidth}{!}{
+					\includegraphics{figures/tree.jpg}
+				}
+				%\includegraphics[scale=1.0]{figurefile}
+				\caption{二叉树}
+				\label{fig:campus}
+			\end{figure}
+		\end{column}
+	\end{columns}
+}
+%基本数据结构：图结构
+\frame[allowframebreaks]{
+    \frametitle{基本数据逻辑结构：图结构}
+    \begin{figure}
+		\setlength{\abovecaptionskip}{0.cm}
+		\setlength{\belowcaptionskip}{0.cm}
+		\centering
+        \includegraphics[width = 0.4\paperwidth]{figures/graph1.png}\\
+        \caption{图}
+	\end{figure}
+    \begin{Definition}[图结构]
+    \CJKindent 图是由顶点的有穷非空集合和顶点之间边的集合组成，表示为$G(V,E)$，其中$G$表示一个图，$V$是图$G$中顶点的集合，$E$是图$G$中边的集合,内部顶点间是多对多的关系。
+    \end{Definition}
+    \framebreak
+    \begin{figure}
+		\setlength{\abovecaptionskip}{0.cm}
+		\setlength{\belowcaptionskip}{0.cm}
+		\centering
+		\subfigure[]{\includegraphics[width = 0.3\paperwidth]{figures/graph2.png}}
+		\subfigure[]{\includegraphics[width = 0.3\paperwidth]{figures/graph3.png}}
+		\caption{a)无向图；b)有向图}
+	\end{figure}
+    \begin{Definition}[有向与无向]
+    \CJKindent 若顶点$v_i$到$v_j$之间的边没有方向，则这条边为\textcolor[rgb]{0.00,0.00,1.00}{无向边}，表示为$(v_i,v_j)$或$(v_j,v_i)$，反之为\textcolor[rgb]{0.00,0.00,1.00}{有向边（或弧）}，表示为$<vi,vj>$，其中$v_i$ 称为\textcolor[rgb]{0.00,0.00,1.00}{弧尾}，$v_j$称为\textcolor[rgb]{0.00,0.00,1.00}{弧头}。若图中所有边都为无向边，则该图为\textcolor[rgb]{0.00,0.00,1.00}{无向图}，反之若都为有向边，则为\textcolor[rgb]{0.00,0.00,1.00}{有向图}。
+    \end{Definition}
+    \framebreak
+        \begin{figure}
+		\setlength{\abovecaptionskip}{0.cm}
+		\setlength{\belowcaptionskip}{0.cm}
+		\centering
+		\subfigure[]{\includegraphics[width = 0.4\paperwidth]{figures/graph_matrix.png}}
+		\subfigure[]{\includegraphics[width = 0.4\paperwidth]{figures/graph_list.png}}
+		\caption{a)邻接矩阵；b)邻接链表}
+	\end{figure}
+    \begin{block}{图的表示}
+    \CJKindent 对于图$G=(V, E)$来说，可以有两种标准的表示方法，一个是\textcolor[rgb]{0.00,0.00,1.00}{邻接矩阵}，另一个是\textcolor[rgb]{0.00,0.00,1.00}{邻接链表}，这两种方法都可以表示有向图和无向图
+    \end{block}
+}
+%算法类别：来源于算法导论
+\subsection{\sihao 机器学习}
+%机器学习是什么
+\frame{
+    \frametitle{机器学习是什么}
+\begin{figure}
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width = 0.65\paperwidth]{figures/machine_define.png}\\
+  %\caption{}
+  %\label{}
+\end{figure}
+\begin{Definition}[机器学习]
+\begin{itemize}
+  \item 机器学习是一门人工智能的科学，该领域的主要研究对象是人工智能，特别是如何在\textcolor[rgb]{0.00,0.00,1.00}{经验}学习中改善具体算法的性能。
+  \item 机器学习是对能通过\textcolor[rgb]{0.00,0.00,1.00}{经验}自动改进的计算机算法的研究。
+  \item 机器学习是用\textcolor[rgb]{0.00,0.00,1.00}{数据}或以往的经验，以此优化计算机程序的性能标准。
+\end{itemize}
+\end{Definition}
+}
+%机器学习发展史
+%机器学习学什么
+\frame{
+    \frametitle{机器学习的目的}
+    \begin{block}{目的}
+    \begin{enumerate}
+      \item 对数据进行预测与分析，特别是对未来新数据进行预测与分析；
+      \item 使计算机更加智能化，也即让计算机的某些性能得到提高；
+      \item 让人们获取新的知识，给人们带来新发现。
+    \end{enumerate}
+    \end{block}
+    \CJKindent 对数据的预测与分析是通过\textcolor[rgb]{0.00,0.07,1.00}{构建机器学习模型}实现的。机器学习的目标就是考虑\textcolor[rgb]{0.00,0.00,1.00}{学习什么样的模型}和\textcolor[rgb]{0.00,0.00,1.00}{如何学习模型}，以使模型能对数据进行准确的预测和分析，同时考虑尽可能的\textcolor[rgb]{0.00,0.00,1.00}{提高学习效率}。
+}
+%机器学习怎么学
+\frame{
+    \frametitle{机器学习三要素}
+    \begin{figure}
+      \centering
+      % Requires \usepackage{graphicx}
+      \includegraphics[width = 0.4\paperwidth]{figures/3yaosu.jpg}\\
+      %\caption{}
+      %\label{}
+    \end{figure}
+
+    \CJKindent 机器学习\textcolor[rgb]{0.00,0.00,1.00}{是由模型（Model）}、\textcolor[rgb]{0.00,0.00,1.00}{策略（Strategy）}、\textcolor[rgb]{0.00,0.00,1.00}{算法（Algorithm）}三部分构成，可简单的标识为
+    $$\mbox{方法} = \mbox{模型} + \mbox{策略} + \mbox{算法}$$
+}
+\frame[allowframebreaks]{
+    \frametitle{机器学习三要素：模型}
+    \begin{Definition}[模型假设空间]
+    \CJKindent 假设空间$\mathcal{F}$可以定义为决策函数的集合
+    $$\mathcal{F}=\{f|Y=f(X)\}$$
+    其中，$X$和$Y$是定义在输入空间$\mathcal{X}$和输出空间$\mathcal{Y}$上的变量。
+    \end{Definition}
+        \begin{Definition}[概率模型假设空间]
+    \CJKindent 假设空间$\mathcal{F}$可以定义为决策函数的集合
+    $$\mathcal{F}=\{P|P_{\theta}(Y|X),\theta \in \mathbb{R}^n\}$$
+    其中，$X$和$Y$是定义在输入空间$\mathcal{X}$和输出空间$\mathcal{Y}$上的随机变量，参数向量$\theta$为$n$维欧式空间$\mathbb{R}^n$中元素，$\mathbb{R}^n$也称为参数空间。
+    \end{Definition}
+    \begin{Definition}[非概率模型假设空间]
+    \CJKindent 假设空间$\mathcal{F}$是由一个参数向量决定的函数族
+    $$\mathcal{F}=\{f|Y=f_{\theta}(X),\theta \in \mathbb{R}^n\}$$
+    其中，参数向量$\theta$为$n$维欧式空间$\mathbb{R}^n$中元素，$\mathbb{R}^n$也称为参数空间。
+    \end{Definition}
+}
+
+\frame[allowframebreaks]{
+    \frametitle{机器学习三要素：策略}
+    \CJKindent 监督学习问题是从假设空间$\mathcal{F}$中选择模型$f$作为决策函数，使得对输入$X$，\textcolor[rgb]{0.00,0.00,1.00}{$f(X)$尽可能的逼近$Y$}，一般使用损失函数来衡量逼近程度。
+    常用损失函数有：
+    \begin{enumerate}
+      \item $0-1$ loss function:
+      $$L(Y, f(X)) = \left\{
+        \begin{aligned}
+        1 &,Y \neq f(X) \\
+        0 &, Y = f(X)
+        \end{aligned}
+        \right\} $$
+      \item quadratic loss function:
+        $$L(Y, f(X)) = (Y - f(X))^2$$
+      \item absolute loss function:
+        $$L(Y,f(X))=\vert | Y- f(X) \vert$$
+      \item loglikelihood function:
+        $$L(Y, P(Y|X))=-\log P(Y|X)$$
+    \end{enumerate}
+    \framebreak
+    \begin{Definition}[经验风险]
+    \CJKindent 给定样本集$T=\{(x_1,y_1),(x_2,y_2),\dots,(x_N,y_N)\}$，模型$f(X)$关于样本集$T$的经验风险（empirical risk），记作$R_{emp}$:
+    $$R_{emp}(f)=\frac{1}{N}\sum L(y_i, f(x_i))$$
+    \end{Definition}
+
+    在假设空间$\mathcal{F}$、损失函数$L$、 样本集$T$确定的情况下，经验风险$R_{emp}$ 也就可以确定，监督学习问题可表述为下述优化问题：
+    $$\mathop{\arg\min}_{f \in \mathcal{F}} \frac{1}{N}\sum L(y_i, f(x_i)).$$
+    \framebreak
+    \begin{Definition}[结构风险]
+    \CJKindent 给定样本集$T=\{(x_1,y_1),(x_2,y_2),\dots,(x_N,y_N)\}$，模型$f(X)$关于样本集$T$的结构风险（structural risk），记作$R_{srm}$:
+    $$R_{srm}(f)=\frac{1}{N}\sum L(y_i, f(x_i)) + \lambda J(f)$$
+    \end{Definition}
+        在假设空间$\mathcal{F}$、损失函数$L$、样本集$T$确定的情况下，经验风险$R_{emp}$也就可以确定，那么增加结构风险的监督学习问题可表述为下述优化问题：
+    $$\mathop{\arg\min}_{f \in \mathcal{F}} \frac{1}{N}\sum L(y_i, f(x_i)) + \lambda J(f)$$
+}
+\frame[allowframebreaks]{
+    \frametitle{机器学习三要素：算法}
+    \CJKindent 算法是指学习模型的具体计算方法。在三要素的框架下，机器学习的算法成为求解优化问题的算法。一般求解优化问题的算法有以下几种：
+    \begin{enumerate}
+      \item Gradient Descent：Batch Gradient Descent，Stochastic Gradient Descent，\\ Conjugate Gradient，gradient projection method;
+      \item Newton's method,Quasi-Newton Method;
+      \item 遗传算法
+      \item 模拟退火
+    \end{enumerate}
+    \framebreak
+    令$f$为样本集$T$的模型假设空间$\mathcal{F}$中的一个元素，对于$\forall (x_i,y_i) \in T$有：
+    $$y_i \approx \hat{y_i}=f(x_i;\theta)$$
+    根据经验风险与结构风险最小原则，构建优化问题
+    \begin{alignat}{2}
+        \arg\min_{\theta} \quad & L(X,Y;\theta)\\
+        \mbox{s.t.}\quad
+        &\theta \in \mathbb{R}^n
+    \end{alignat}
+
+    \CJKindent 其中$X$为样本集$T$中样本的特征部分，$Y$为样本的目标值部分，下文以$L(\theta)$作为$L(X,Y;\theta)$的缩写。
+    \framebreak
+    \begin{block}{Batch Gradient Descent}
+        $$\theta^{(i+1)} = \theta^{(i)} + \alpha \nabla_{\theta} L(\theta^{(i)})$$
+        其中$\theta$为模型中$f$中要学习的参数，$\alpha$为学习步长。
+    \end{block}
+    \begin{itemize}
+      \item \textcolor[rgb]{0.00,0.00,1.00}{优点}：保证得到一个最优解；
+      \item \textcolor[rgb]{1.00,0.00,0.00}{缺点}：初始下降速度快，最优解领域内下降速度满；计算量大。
+    \end{itemize}
+
+    \framebreak
+    \begin{block}{Stochastic gradient descent}
+        $$\theta^{(i+1)} = \theta^{(i)} + \alpha \nabla_{\theta} L(\theta^{(i);x_i,y_i})$$
+        其中$\theta$为模型中$f$中要学习的参数，$\alpha$为学习步长。
+    \end{block}
+    \begin{itemize}
+      \item \textcolor[rgb]{0.00,0.00,1.00}{优点}：更新频次快，优化速度更快;一定的随机性导致有几率跳出局部最优；
+      \item \textcolor[rgb]{1.00,0.00,0.00}{缺点}：随机性可能导致收敛复杂化，即使到达最优点仍然会进行过度优化，因此SGD得优化过程相比BGD充满动荡。
+    \end{itemize}
+
+    \framebreak
+    \begin{block}{Mini-batch gradient descent}
+        $$\theta^{(i+1)} = \theta^{(i)} + \alpha \nabla_{\theta} L(\theta^{(i);x_{i:i+n},y_{i:i+n}})$$
+        其中$\theta$为模型中$f$中要学习的参数，$\alpha$为学习步长。
+    \end{block}
+    \begin{itemize}
+      \item \textcolor[rgb]{0.00,0.00,1.00}{优点}：参数更新时的动荡变小，收敛过程更稳定，降低收敛难度；可以利用现有的线性代数库高效的计算多个样本的梯度;
+      \item \textcolor[rgb]{1.00,0.00,0.00}{缺点}：学习率选择与更新策略，非凸问题如何全局寻优。
+    \end{itemize}
+
+    \framebreak
+        \begin{block}{Newton's method}
+        $$\theta^{(i+1)} = \theta^{(i)} - H^{-1}\nabla_{\theta}L(\theta^{(i)})$$
+        其中$\theta$为模型中$f$中要学习的参数，$H^{-1}$为$L$的Hessian matrix。
+        $$
+        \nabla_\theta^2 L = \begin{bmatrix}
+                                \frac{\partial ^2 L}{\partial\theta_1^2} & \frac{\partial ^2 L}{\partial\theta_1\theta_2} & \cdots  & \frac{\partial ^2 L}{\partial\theta_1\theta_N}\\
+                                \frac{\partial ^2 L}{\partial\theta_2\theta_1} &  \frac{\partial ^2 L}{\partial\theta_2^2}& \cdots & \frac{\partial ^2 L}{\partial\theta_2\theta_N}\\
+                                \vdots & \vdots & \ddots  & \vdots\\
+                                \frac{\partial ^2 L}{\partial\theta_N\theta_1} & \frac{\partial ^2 L}{\partial\theta_N\theta_2} & \cdots & \frac{\partial ^2 L}{\partial\theta_N^2}
+                            \end{bmatrix}
+        $$
+    \end{block}
+    \begin{block}{Quasi-Newton Method}
+        牛顿法的搜索方向是$d^{(i)}=-H_{i}^{-1}\nabla_{\theta}L(\theta^{(i)})$，$L$的一阶导和二阶导存在以下关系：
+        $$\theta^{(i+1)} - \theta^{(i)}=H^{-1}[\nabla_{\theta}L(\theta^{(i+1)}) - \nabla_{\theta}L(\theta^{(i)})]$$
+        $H^{-1}$的计算量较大，改为构造近似矩阵$U$且满足一下条件
+        $$\theta^{(i+1)} - \theta^{(i)}=U_{i+1}[\nabla_{\theta}L(\theta^{(i+1)}) - \nabla_{\theta}L(\theta^{(i)})]$$
+    \end{block}
+    拟牛顿法和牛顿法的不同在于\textcolor[rgb]{0.00,0.00,1.00}{如何确定近似矩阵$U$} 及\textcolor[rgb]{0.00,0.00,1.00}{每次更新$\theta$时进行步长寻优}，由此引出DFP、BFGS、 L-BFGS等算法。
+}
+%机器学习算法定义
+%机器学习算法分类
+\frame[allowframebreaks]{
+    \frametitle{机器学习算法归类}
+    \begin{figure}
+      \centering
+      % Requires \usepackage{graphicx}
+      \includegraphics[width = 0.7\paperwidth]{figures/Categories-of-Machine-Learning.jpg}\\
+      %\caption{}
+      %\label{}
+    \end{figure}
+    \framebreak
+    \CJKindent 机器学习是基于数据构建的统计模型从而对数据进行分析与预测，可分为监督学习、无监督学习、半监督学习、强化学习四部分。
+    \begin{enumerate}
+      \item \textcolor[rgb]{0.00,0.00,1.00}{有监督学习}：训练数据既有特征(feature)又有标签(label)；
+      \item \textcolor[rgb]{0.00,0.00,1.00}{无监督学习}：训练样本的标记信息未知；
+      \item \textcolor[rgb]{0.00,0.00,1.00}{半监督学习}：训练集同时包含有标记样本数据和未标记样本数据，不需要人工干预；
+      \item \textcolor[rgb]{0.00,0.00,1.00}{强化学习}：强调如何基于环境而行动，以取得最大化的预期利益。
+    \end{enumerate}
+}
+\frame[allowframebreaks]{
+    \frametitle{监督学习:分类}
+    \begin{figure}
+      \centering
+      % Requires \usepackage{graphicx}
+      \includegraphics[width = 0.7\paperwidth]{figures/Explain-Classification-Algorithms-in-Detail.png}\\
+      %\caption{}
+      %\label{}
+    \end{figure}
+    \framebreak
+    \begin{figure}
+		\setlength{\abovecaptionskip}{0.cm}
+		\setlength{\belowcaptionskip}{0.cm}
+		\centering
+		\subfigure[]{\includegraphics[width = 0.3\paperwidth]{figures/keylines-clustering-algorithm-768x664.jpg}}
+		\subfigure[]{\includegraphics[width = 0.3\paperwidth]{figures/dec_tree.png}}
+		\subfigure[]{\includegraphics[width = 0.3\paperwidth]{figures/svm.png}}
+		\caption{a)KNN；b)Decision Tree；c)SVM}
+	\end{figure}
+}
+\frame[allowframebreaks]{
+    \frametitle{监督学习:回归}
+    \begin{columns}[c] % align columns
+		\begin{column}<1->{.55\textwidth}
+            \begin{enumerate}
+              \item 多元线性回归：$$\mathop{\arg\min}_{\boldsymbol \theta} \frac{1}{n} \sum_{i=1}^{n} L(y_i,f(x_i);\theta) $$
+              \item Lasso回归：$$\mathop{\arg\min}_{\dot{\boldsymbol \theta}} (\boldsymbol y - X\dot{\boldsymbol \theta})^\mathsf{T} (\boldsymbol y - X\dot{\boldsymbol \theta}) + \lambda \sum_j \vert \dot{\theta}_j \vert$$
+
+              \item Ridge回归：$$\mathop{\arg\min}_{\dot{\boldsymbol \theta}} (\boldsymbol y - X\dot{\boldsymbol \theta})^\mathsf{T} (\boldsymbol y - X\dot{\boldsymbol \theta}) + \frac{\lambda}{2} \sum_j \dot{\theta}_j^2$$
+            \end{enumerate}	
+		\end{column}%
+        \hfill%
+		\begin{column}<0->{.45\textwidth}
+			\begin{figure}[thpb]
+				\centering
+				\resizebox{1\linewidth}{!}{
+					\includegraphics{figures/regular1.png}
+				}
+				%\includegraphics[scale=1.0]{figurefile}
+				%\caption{5v特点}
+				\label{fig:campus}
+			\end{figure}
+		\end{column}%
+	\end{columns}
+    \framebreak
+    \begin{figure}
+      \centering
+      % Requires \usepackage{graphicx}
+      \includegraphics[width = 0.9\paperwidth]{figures/svm-svr.jpg}\\
+    \end{figure}
+    
+    \framebreak
+    
+    \CJKindent CART回归树的损失函数为$$\min \frac{1}{n}\sum_{m=1}^{M}\sum_{x_i \in R_m}(c_m - y_i)^2$$
+    其中$R_m$为第$m$个叶节点对应的取值，$c_m$表示第$m$个叶节点的预测值$$c_m = ave(y_i|x_i \in leaf_m)$$
+    
+    \CJKindent CART选择切分特征量$j$和切分点$s$的公式如下：
+    $$\min_{j,s}[\min_{c_1} \sum_{x_i \in R_1\{j,s\}}(y_i-c_1) + \min_{c_2} \sum_{x_i \in R_2\{j,s\}}(y_i-c_2)]$$
+}
+%无监督学习：聚类
+\frame[allowframebreaks]{
+    \frametitle{无监督学习：聚类}
+    
+    \begin{figure}
+      \centering
+      % Requires \usepackage{graphicx}
+      \includegraphics[width = 0.7\paperwidth]{figures/CentroidBasedClustering.png}\\
+    \end{figure}
+
+    \CJKindent 聚类就是按照某个特定标准(如距离准则)把一个数据集分割成不同的类或簇，\textcolor[rgb]{0.00,0.00,1.00}{类内差异小，类间差异大}。
+    \framebreak
+    \begin{enumerate}
+      \item \textcolor[rgb]{0.00,0.00,1.00}{基于划分}：类内的点都足够近，类间的点都足够远，K-means；
+      \item \textcolor[rgb]{0.00,0.00,1.00}{基于层次}：合并的层次聚类和分裂的层次聚类，BIRCH算法；
+      \item \textcolor[rgb]{0.00,0.00,1.00}{基于密度}：定义两个参数，一个是圈儿的最大半径，一个是一个圈儿里最少应容纳几个点，DBSCAN；
+      \item \textcolor[rgb]{0.00,0.00,1.00}{基于模型的方法}：为每簇假定了一个模型，寻找数据对给定模型的最佳拟合，GMM；
+      \item \textcolor[rgb]{0.00,0.00,1.00}{基于模糊的聚类}：在聚类汇总引入隶属度概念。
+      %\item \textcolor[rgb]{0.00,0.00,1.00}{基于网格}：
+    \end{enumerate}
+}
+\frame[allowframebreaks]{
+    \frametitle{无监督学习：降维}
+    \begin{figure}
+      \centering
+      % Requires \usepackage{graphicx}
+      \includegraphics[width = 0.5\paperwidth]{figures/noise.png}\\
+    \end{figure}
+    
+    为什么要降维？
+    \begin{enumerate}
+      \item 维数少可以使算法有更快的计算速度，减少机器内存占用等
+      \item 多个特征携带的“信息”有相同或类似的情况（冗余）
+      \item 用于数据可视化。
+    \end{enumerate}
+    
+    \framebreak
+    常用的降维算法有
+    \begin{enumerate}
+      \item \textcolor[rgb]{0.00,0.00,1.00}{PCA}
+      \item \textcolor[rgb]{0.00,0.00,1.00}{SVD}：一个$m \times n$的实数矩阵$A$可分解为$A=U \Sigma V^T$，$U \in R^{m \times m}$，$ \Sigma \in R^{m \times n}$，$V \in R^{n \times n}$
+      \item \textcolor[rgb]{0.00,0.00,1.00}{FFT，DCT，WT}
+      \item \textcolor[rgb]{0.00,0.00,1.00}{t-SNE}
+    \end{enumerate}
+    
+}
+
+%监督学习
+%强化学习
+\section{\erhao 机器学习算法应用场景}
+\frame{
+    \frametitle{应用场景}
+    \begin{figure}
+      \centering
+      % Requires \usepackage{graphicx}
+      \includegraphics[width=0.65\paperwidth]{figures/application.jpg}\\
+    \end{figure}
+}
+\subsection{\sihao 自然语言处理}
+
+\subsection{\sihao 语音识别}
+
+\subsection{\sihao 机器视觉}
+
+\subsection{\sihao 推荐系统}
+
+\section{\erhao 总结与展望}
+
+\frame{
+  Description item:
+  \begin{description}%[<+-| alert@+>]
+  \item[description] Item starts with description.
+  \item[Fermion] This is item 2.
+  \end{description}
+}
+
+\subsection*{Thanks}
+
+\frame{
+  %\frametitle{\subsecname}
+%  \begin{columns}
+%  \column{13cm}
+%  \column{14cm}
+\begin{center}
+    \textcolor[rgb]{1.00,0,0.00}{\yihao Thank you!}
+\end{center}
+
+%  \column{13cm}
+%  \end{columns}
+}
+
+\end{CJK}
+\end{document}
+
+
+%\frame{
+%  %\frametitle{\subsecname~ frame b}
+%  \begin{itemize}[<+-| alert@+>]
+%  \item
+%  item a
+%  \end{itemize}
+%}
+%\begin{figure}
+%\includegraphics[height=10cm,width=12cm]{a3.eps}
+%\caption{}
+%\label{a3}
+%\end{figure}
