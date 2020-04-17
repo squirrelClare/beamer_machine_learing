@@ -1,2 +1,2 @@
-# beamer_machine_learing
+# beamer_machine_learning
 机器学习相关基础概念及研究领域介绍
